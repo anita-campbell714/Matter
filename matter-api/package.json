@@ -1,0 +1,20 @@
+{
+  "scripts": {
+    "start": "node app.js",
+    "seed-dev": "NODE_ENV=development node db/seed/run-seed.js",
+    "test": "cross-env NODE_ENV=test jest --testTimeout=5000",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.10.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-extended": "^4.0.2",
+    "nodemon": "^3.1.9",
+    "supertest": "^7.0.0"
+  }
+}

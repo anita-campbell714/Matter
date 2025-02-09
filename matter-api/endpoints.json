@@ -1,0 +1,50 @@
+{
+    "GET /user": {
+      "description": "serves up an array of all users",
+      "exampleResponse": {
+        "users": [
+            {
+              "name": "Bob Belcher",
+              "email": "bob@example.com",
+              "password": "hashedpassword123"
+            },
+            {
+              "name": "Yoliswa Moyo",
+              "email": "yoliswa.mo@gmail.com",
+              "password": "hashedpassword456"
+            },
+            {
+              "name": "Staff Staff",
+              "email": "staffstaff@example.com",
+              "password": "hashedpassword789"
+            }
+        ]
+        }
+    },
+    "GET /events": {
+      "description": "serves up an an array of all available events",
+      "queries": [],
+      "exampleResponse": {
+        "event": [
+          {
+            "title": "Date night",
+            "date": "2025-11-17",
+            "venue": "George's pub",
+            "location": "Manchester",
+            "price:": "£10.50",
+            "category": "Nightlife",
+            "available": true
+          },
+          {
+            "title": "Comedy night",
+            "date": "2025-10-02",
+            "venue": "Yolo bar",
+            "location": "Birmingham",
+            "price:": "6.00",
+            "category": "Shows",
+            "available": true
+        }
+        ]
+        }
+    }
+}
