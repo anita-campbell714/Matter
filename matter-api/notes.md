@@ -1,6 +1,9 @@
-package.json to be added if figure out how to use the separate listen.js file:
+-   EADDRINUSE error - possible fix if it comes back: https://github.com/remy/nodemon/issues/1316#issuecomment-387367160
 
-  "name": "matter-api",
-  "version": "1.0.0",
-  "description": "matter-api",
-  "main": "listen.js",
+    {
+    first_name: "test",
+    last_name: "test",
+    email: "test.@email.com",
+    password: "test",
+    location: "test"
+    },
