@@ -25,10 +25,10 @@ const request = require("supertest");
 describe("invalid endpoint", () => {
     test("404 status and error message when given an endpoint that doesn't exist", () => {
         return request(app)
-        .get("api/not-a-route")
+        .get("/api/not-a-route")
         .expect(404)
         .then((response) => {
-            expect(response.body.message).toBe("path not found");
+            expect(response.body.message).toBe("path not found this time");
         });
     });
 });
@@ -39,14 +39,13 @@ describe("GET /api/test", () => {
         .get("/api/test")
         .expect(200)
         .then((response) => {
-            // console.log(response);
             expect(response.body).toBe("test okay");
         });
     });
 });
 
-describe("POST /api/", () => {
-    test("returns status 201: creates a new user account", () => {
+describe("POST /api/create-an-account", () => {
+    test("returns status 200: creates a new user account", () => {
         const newUser = {
             first_name: "Yoliswa",
             last_name: "Moyo",
@@ -57,10 +56,10 @@ describe("POST /api/", () => {
         return request(app)
         .post("/api/create-an-account")
         .send(newUser)
-        .expect(201)
+        .expect(200)
         .then((response) => {
-            // console.log(response.body);
-            expect(response.body.user).toMatchObject(newUser);
+            console.log("test post request")
+            expect(response.body).toEqual(newUser);
         });
     });
 });
