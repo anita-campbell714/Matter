@@ -9,15 +9,16 @@ export default function CreateAnAccountPage() {
     const [password, setPassword] = useState("")
     const [location, setLocation] = useState("")
 
-    function createUser(event) {
+    async function createUser(event) {
         event.preventDefault()
-        axios.post("/create-an-account", {
+        await axios.post("/create-an-account", {
             firstName,
             lastName,
             email,
             password,
             location,
         })
+        alert("Your account has been created! Now you can log in.")
     }
 
     return (
@@ -39,7 +40,7 @@ export default function CreateAnAccountPage() {
                     />
                     <input
                         type="email"
-                        placeholder={"you@email.com"}
+                        placeholder={"your@email.com"}
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
                     />
