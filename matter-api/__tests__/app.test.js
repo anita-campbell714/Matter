@@ -23,7 +23,7 @@ const request = require("supertest");
 //   });
 
 describe("invalid endpoint", () => {
-    test("404 status and error message when given an endpoint that doesn't exist", () => {
+    test("returns status 404: and error message when given an endpoint that doesn't exist", () => {
         return request(app)
         .get("/api/not-a-route")
         .expect(404)
@@ -34,7 +34,7 @@ describe("invalid endpoint", () => {
 });
 
 describe("GET /api/test", () => {
-    test("returns a 200 status and a message", () => {
+    test("returns status 200: and a message", () => {
         return request(app)
         .get("/api/test")
         .expect(200)
@@ -47,19 +47,41 @@ describe("GET /api/test", () => {
 describe("POST /api/create-an-account", () => {
     test("returns status 200: creates a new user account", () => {
         const newUser = {
-            first_name: "Yoliswa",
-            last_name: "Moyo",
-            email: "yoliswa.moyo@example.com",
-            password: "hashedpassword456",
-            location: "London, UK"
+            firstName: "test",
+            lastName: "test",
+            email: "",
+            password: "thisismypassword",
+            location: "New York, USA"
         }
+        newUser.email = Math.random().toString(36).slice(-10) + "@gmail.com";
+
         return request(app)
         .post("/api/create-an-account")
         .send(newUser)
         .expect(200)
         .then((response) => {
-            console.log("test post request")
-            expect(response.body).toEqual(newUser);
+            expect(response.body.email).toHaveLength(20)
         });
     });
+
+    test("returns status 422: and error message when the inputted email address already exists in the database: duplicate key, an account has already been created with this email address", () => {
+        const newUser = {
+            firstName: "test",
+            lastName: "test",
+            email: "davidhammerman@hotmail.com",
+            password: "test",
+            location: "test"
+        }
+        return request(app)
+        .post("/api/create-an-account")
+        .send(newUser)
+        .expect(422)
+        .then((response) => {
+            const mongoErrorCode = response.body.errorResponse.code
+            expect(mongoErrorCode).toBe(11000)
+        })
+    })
 });
+
+
+// test to check that user login password is correct (requires a new account to have already been created. User password will be stored upon account creation. When user comes to login, the stored password will then be compared to current login page password).

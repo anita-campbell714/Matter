@@ -1,15 +1,15 @@
 // // const { registerAccount } = require("../models/users-mod");
 
 // exports.createAccount = (request, response, next) => {
-//     const {first_name, last_name, email, password, location} = request.body;
+//     const {firstName, lastName, email, password, location} = request.body;
 
 //     console.log(response)
 
-//     response.json(first_name, last_name, email, password, location)
+//     response.json(firstName, lastName, email, password, location)
 
 //         // const newCreateAccount = {
-//         //     first_name,
-//         //     last_name,
+//         //     firstName,
+//         //     lastName,
 //         //     email,
 //         //     password,
 //         //     location
@@ -23,7 +23,7 @@
 //         //     response.status(500).send("Error creating account")
 //         //     next(error)
 //         // }
-//         // return registerAccount(first_name, last_name, email, password, location)
+//         // return registerAccount(firstName, lastName, email, password, location)
 //         // .then((response) => {
 //         //     response.status(201).send()
 //         // })

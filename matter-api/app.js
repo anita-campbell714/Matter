@@ -22,16 +22,21 @@ app.get("/api/test", (request, response) => {
 
 app.post("/api/create-an-account", async (request, response) => {
 
-    const {first_name, last_name, email, password, location} = request.body;
+    const {firstName, lastName, email, password, location} = request.body;
 
-    const userDoc = await User.create({
-        first_name,
-        last_name,
-        email,
-        password: bcrypt.hashSync(password, bcryptSalt),
-        location
-    })
-    response.json(userDoc)
+    try {
+        const userDoc = await User.create({
+            firstName,
+            lastName,
+            email,
+            password: bcrypt.hashSync(password, bcryptSalt),
+            location
+        })
+        response.json(userDoc)
+    }
+    catch (error){
+        response.status(422).json(error)
+    }
 })
 
 console.log("app.js is up and running!")
