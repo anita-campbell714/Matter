@@ -11,14 +11,18 @@ export default function CreateAnAccountPage() {
 
     async function createUser(event) {
         event.preventDefault()
-        await axios.post("/create-an-account", {
-            firstName,
-            lastName,
-            email,
-            password,
-            location,
-        })
-        alert("Your account has been created! Now you can log in.")
+        try {
+            await axios.post("/create-an-account", {
+                firstName,
+                lastName,
+                email,
+                password,
+                location,
+            })
+            alert("Your account has been created! Now you can log in.")
+        } catch (error) {
+            alert("Account creation failed. Please try again.")
+        }
     }
 
     return (
@@ -49,6 +53,7 @@ export default function CreateAnAccountPage() {
                         placeholder={"password"}
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
+                        autoComplete="true"
                     />
                     <input
                         type="text"
