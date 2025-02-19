@@ -83,5 +83,63 @@ describe("POST /api/create-an-account", () => {
     })
 });
 
+describe("POST /api/login", () => {
+    test("returns status 200: logs user into their account", () => {
+        const userLogin = {
+            email: "yoliswa.moyo@example.com",
+            password: "hashedpassword456"
+        }
+        return request(app)
+        .post("/api/login")
+        .send(userLogin)
+        .expect(200)
+        .then((response) => {
+            console.log(response.body)
+            // expect(response.body).toBe("hashedpassword456")
+        })
+    })
+
+    // test("returns status 422: and error message when the inputted password is incorrect", () => {
+    //     const userPwdRight = {
+    //         firstName: "test",
+    //         lastName: "test",
+    //         email: "davidhammerman@hotmail.com",
+    //         password: "test",
+    //         location: "test"
+    //     }
+
+    //     const userPwdWrong = {
+    //         firstName: "test",
+    //         lastName: "test",
+    //         email: "davidhammerman@hotmail.com",
+    //         password: "test1",
+    //         location: "test"
+    //     }
+
+    //     return request(app)
+    //     .post("/api/create-an-account")
+    //     .send(userPwdWrong)
+    //     .expect(422)
+    //     .then((response) => {
+    //         const mongoErrorCode = response.body.errorResponse.code
+    //         expect(mongoErrorCode).toBe(11000)
+    //     })
+    // })
+
+    
+    // test("", () => {
+
+    // })
+})
+
+
+// describe("", () => {
+//     test("", () => {
+
+//     })
+//     test("", () => {
+
+//     })
+// })
 
 // test to check that user login password is correct (requires a new account to have already been created. User password will be stored upon account creation. When user comes to login, the stored password will then be compared to current login page password).
