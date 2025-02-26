@@ -1,18 +1,19 @@
 const mongoose = require("mongoose");
 
 const eventSchema = new mongoose.Schema ({
+    "owner": {type: mongoose.Schema.Types.ObjectId, ref: "User"},
     "title": {type: String},
-    "ages": {type: String},
+    "age": {type: Number},
     "eventDate": {type: String},
-    "startTime": {type:Number},
-    "endTime": {type: Number},
+    "startTime": {type:String},
+    "endTime": {type: String},
     "address": {type: String},
     "price": {type: String},
-    "category": {type: String},
+    "maxGuests": {type: Number},
     "description": {type: String},
-    "owner": {type: mongoose.Schema.Types.ObjectId, ref: "User"},
     "posted_date": {type: String},
-    "cover_image": {type: String},
+    "image": {type: String},
+    "category": {type: String},
     "available": {type: String}
 })
 

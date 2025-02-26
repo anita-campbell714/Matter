@@ -6,14 +6,19 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken")
 
 const User = require("./models/users.mod");
+const Event = require("./models/events-mod");
 const cookieParser = require("cookie-parser");
-require ("dotenv").config();
+const imageDownloader = require("image-downloader");
+const multer = require("multer");
+const fs = require("fs");
 
+require ("dotenv").config();
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = "odsnsfkdsbfosdjfsdk"
 
 app.use(express.json());
 app.use(cookieParser())
+app.use("/api/uploads", express.static(__dirname+"/uploads"));
 app.use(cors({
     credentials: true,
     origin: "http://localhost:5173"
@@ -81,6 +86,54 @@ app.get("/api/profile", (request, response) => {
 
 app.post("/api/logout", (request, response) => {
     response.cookie("token", "").json(true)
+})
+
+app.post("/api/upload-by-link", async (request, response) => {
+    const {link} = request.body
+    const newName = "image" +  Date.now() + ".jpg"
+
+    await imageDownloader.image({
+        url: link,
+        dest: __dirname + "/uploads/" + newName,
+    })
+    response.json(newName)
+})
+
+const imagesMiddleware = multer({dest: "uploads"})
+app.post("/api/upload", imagesMiddleware.array("images", 100), (request, response) => {
+    const uploadedFiles = []
+    for (let i = 0; i < request.files.length; i++) {
+        const {path, originalname} = request.files[i]
+        const parts = originalname.split(".")
+        const ext = parts[parts.length - 1]
+        const newPath = path + "." + ext
+        fs.renameSync(path, newPath)
+        uploadedFiles.push(newPath.replace("uploads/", ""))
+    }
+    response.json(uploadedFiles)
+})
+
+app.post("/api/events", (request,response) => {
+    const {token} = request.cookies
+    const {title, age, eventDate, startTime, endTime, address, price, description, addedImages, additionalInfo, maxGuests} = request.body
+    jwt.verify(token, jwtSecret, {}, async (error, userData) => {
+        if(error) throw error;
+        const placeDoc = await Event.create({
+            owner: userData.id,
+            title,
+            age,
+            eventDate,
+            startTime,
+            endTime,
+            address,
+            price,
+            description,
+            addedImages,
+            additionalInfo,
+            maxGuests
+        })
+        response.json(placeDoc)
+    })
 })
 
 // test@email.com

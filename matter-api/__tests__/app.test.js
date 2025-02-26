@@ -95,7 +95,7 @@ describe("POST /api/login", () => {
         .expect(200)
         .then((response) => {
             console.log(response.body)
-            // expect(response.body).toBe("hashedpassword456")
+            expect(response.body).toBe("hashedpassword456")
         })
     })
 
