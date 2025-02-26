@@ -6,7 +6,7 @@ import Layout from "./Layout"
 import CreateAnAccountPage from "./pages/CreateAnAccountPage"
 import axios from "axios"
 import { UserContextProvider } from "./UserContext"
-import AccountPage from "./pages/AccountPage"
+import ProfilePage from "./pages/ProfilePage"
 
 axios.defaults.baseURL = "http://localhost:4000/api"
 axios.defaults.withCredentials = true
@@ -24,11 +24,11 @@ export default function App() {
                     />
                     <Route
                         path="/account/:subpage?"
-                        element={<AccountPage />}
+                        element={<ProfilePage />}
                     />
                     <Route
                         path="/account/:subpage/:action"
-                        element={<AccountPage />}
+                        element={<ProfilePage />}
                     />
                 </Route>
             </Routes>
