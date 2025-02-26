@@ -7,6 +7,8 @@ import CreateAnAccountPage from "./pages/CreateAnAccountPage"
 import axios from "axios"
 import { UserContextProvider } from "./UserContext"
 import ProfilePage from "./pages/ProfilePage"
+import EventsPage from "./pages/EventsPage"
+import EventsFormPage from "./pages/EventsFormPage"
 
 axios.defaults.baseURL = "http://localhost:4000/api"
 axios.defaults.withCredentials = true
@@ -22,13 +24,15 @@ export default function App() {
                         path="/create-an-account"
                         element={<CreateAnAccountPage />}
                     />
+                    <Route path="/account" element={<ProfilePage />} />
+                    <Route path="/account/events" element={<EventsPage />} />
                     <Route
-                        path="/account/:subpage?"
-                        element={<ProfilePage />}
+                        path="/account/events/new"
+                        element={<EventsFormPage />}
                     />
                     <Route
-                        path="/account/:subpage/:action"
-                        element={<ProfilePage />}
+                        path="/account/events/:id"
+                        element={<EventsFormPage />}
                     />
                 </Route>
             </Routes>

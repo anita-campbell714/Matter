@@ -9,12 +9,10 @@ const eventSchema = new mongoose.Schema ({
     "endTime": {type: String},
     "address": {type: String},
     "price": {type: String},
-    "maxGuests": {type: Number},
+    "capacity": {type: Number},
     "description": {type: String},
-    "posted_date": {type: String},
-    "image": {type: String},
-    "category": {type: String},
-    "available": {type: String}
+    "images": {type: [String]},
+    "additionalInfo": {type: [String]},
 })
 
 const EventModel = mongoose.model("Event", eventSchema)

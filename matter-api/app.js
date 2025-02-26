@@ -115,10 +115,11 @@ app.post("/api/upload", imagesMiddleware.array("images", 100), (request, respons
 
 app.post("/api/events", (request,response) => {
     const {token} = request.cookies
-    const {title, age, eventDate, startTime, endTime, address, price, description, addedImages, additionalInfo, maxGuests} = request.body
+    const {title, age, eventDate, startTime, endTime, address, price, description, addedImages, additionalInfo, capacity} = request.body
+
     jwt.verify(token, jwtSecret, {}, async (error, userData) => {
         if(error) throw error;
-        const placeDoc = await Event.create({
+        const eventDoc = await Event.create({
             owner: userData.id,
             title,
             age,
@@ -127,13 +128,57 @@ app.post("/api/events", (request,response) => {
             endTime,
             address,
             price,
+            capacity,
             description,
-            addedImages,
+            images: addedImages,
             additionalInfo,
-            maxGuests
         })
-        response.json(placeDoc)
+        console.log(userData)
+        response.json(eventDoc)
     })
+})
+
+app.get("/api/events", async (request, response) => {
+    const {token} = request.cookies
+    jwt.verify(token, jwtSecret, {}, async (error, userData) => {
+        const {id} = userData
+        response.json(await Event.find({owner: id}))
+    })
+})
+
+app.get("/api/events/:id", async (request, response) => {
+    const {id} = request.params
+    // console.log(id)
+    response.json(await Event.findById(id))
+})
+
+app.put("/api/events/", async (request, response) => {
+    const {token} = request.cookies
+    const {id, title, age, eventDate, startTime, endTime, address, price, description, addedImages, additionalInfo, capacity} = request.body
+
+    jwt.verify(token, jwtSecret, {}, async (error, userData) => {
+        if(error) throw error;
+        const eventDoc = await Event.findById(id)
+
+        if(userData.id === eventDoc.owner.toString()){
+            eventDoc.set({
+            title,
+            age,
+            eventDate,
+            startTime,
+            endTime,
+            address,
+            price,
+            capacity,
+            description,
+            images: addedImages,
+            additionalInfo,
+            })
+            await eventDoc.save()
+            response.json("okay")
+        }
+})
+
 })
 
 // test@email.com

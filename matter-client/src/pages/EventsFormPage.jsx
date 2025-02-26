@@ -1,8 +1,12 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ImagesUploader from "../ImagesUploader"
 import AdditionalInfo from "../AdditionalInfo"
+import AccountNav from "../AccountNav"
+import axios from "axios"
+import { Navigate, useParams } from "react-router"
 
 export default function EventsFormPage() {
+    const { id } = useParams()
     const [title, setTitle] = useState("")
     const [age, setAge] = useState("")
     const [eventDate, setEventDate] = useState("")
@@ -11,13 +15,34 @@ export default function EventsFormPage() {
     const [address, setAddress] = useState("")
     const [price, setPrice] = useState("")
     const [description, setDescription] = useState("")
-    const [addedImages, setAddedImages] = useState([])
-    const [additionalInfo, setAdditionalInfo] = useState([])
-    const [maxGuests, setMaxGuests] = useState(1)
+    const [addedImages, setAddedImages] = useState("")
+    const [additionalInfo, setAdditionalInfo] = useState("")
+    const [capacity, setCapacity] = useState(1)
+    const [redirectUser, setRedirectUser] = useState(false)
 
-    async function addNewEvent(event) {
+    useEffect(() => {
+        if (!id) {
+            return
+        }
+        axios.get("/events/" + id).then((response) => {
+            const { data } = response
+            setTitle(data.title)
+            setAge(data.age)
+            setEventDate(data.eventDate)
+            setStartTime(data.startTime)
+            setEndTime(data.endTime)
+            setAddress(data.address)
+            setPrice(data.price)
+            setDescription(data.description)
+            setAddedImages(data.images)
+            setAdditionalInfo(data.additionalInfo)
+            setCapacity(data.capacity)
+        })
+    }, [id])
+
+    async function saveEvent(event) {
         event.preventDefault()
-        await axios.post("/events", {
+        const eventData = {
             title,
             age,
             eventDate,
@@ -28,16 +53,32 @@ export default function EventsFormPage() {
             description,
             addedImages,
             additionalInfo,
-            maxGuests,
-        })
+            capacity,
+        }
+
+        if (id) {
+            await axios.put("/events", {
+                id,
+                ...eventData,
+            })
+            setRedirectUser(true)
+        } else {
+            await axios.post("/events", eventData)
+            setRedirectUser(true)
+        }
+    }
+
+    if (redirectUser) {
+        return <Navigate to={"/account/events"} />
     }
 
     return (
         <div>
+            <AccountNav />
             <div className="text-2xl center flex justify-center mb-8">
                 New event
             </div>
-            <form onSubmit={addNewEvent}>
+            <form onSubmit={saveEvent}>
                 <h2 className="text-lg mt-4">Title</h2>
                 <input
                     type="text"
@@ -102,8 +143,8 @@ export default function EventsFormPage() {
                 <h2 className="text-lg mt-4">Max Guests</h2>
                 <input
                     type="number"
-                    value={maxGuests}
-                    onChange={(event) => setMaxGuests(event.target.value)}
+                    value={capacity}
+                    onChange={(event) => setCapacity(event.target.value)}
                     placeholder="e.g.: 20"
                 />
                 <h2 className="text-lg mt-4">About this event</h2>

@@ -1,7 +1,6 @@
 export default function AdditionalInfo({ selected, onChange }) {
     function handleCheckboxClick(event) {
         const { checked, name } = event.target
-        onChange([...selected, name])
         if (checked) {
             onChange([...selected, name])
         } else {
@@ -17,6 +16,7 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
+                        checked={selected.includes("parking")}
                         name="parking"
                         onChange={handleCheckboxClick}
                     />
@@ -39,6 +39,7 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
+                        checked={selected.includes("entrance")}
                         name="entrance"
                         onChange={handleCheckboxClick}
                     />
@@ -62,6 +63,7 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
+                        checked={selected.includes("acessibleSeating")}
                         name="acessibleSeating"
                         onChange={handleCheckboxClick}
                     />
@@ -84,6 +86,7 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
+                        checked={selected.includes("alcoholFree")}
                         name="alcoholFree"
                         onChange={handleCheckboxClick}
                     />
@@ -107,6 +110,7 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
+                        checked={selected.includes("wifi")}
                         name="wifi"
                         onChange={handleCheckboxClick}
                     />
@@ -129,6 +133,7 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
+                        checked={selected.includes("nightlife")}
                         name="nightlife"
                         onChange={handleCheckboxClick}
                     />
@@ -151,6 +156,7 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
+                        checked={selected.includes("music")}
                         name="music"
                         onChange={handleCheckboxClick}
                     />
@@ -174,6 +180,7 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
+                        checked={selected.includes("arts")}
                         name="arts"
                         onChange={handleCheckboxClick}
                     />
@@ -197,6 +204,7 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
+                        checked={selected.includes("dating")}
                         name="dating"
                         onChange={handleCheckboxClick}
                     />
@@ -220,6 +228,7 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
+                        checked={selected.includes("hobbies")}
                         name="hobbies"
                         onChange={handleCheckboxClick}
                     />
@@ -243,6 +252,7 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
+                        checked={selected.includes("business")}
                         name="business"
                         onChange={handleCheckboxClick}
                     />
@@ -266,6 +276,7 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
+                        checked={selected.includes("food")}
                         name="food"
                         onChange={handleCheckboxClick}
                     />
