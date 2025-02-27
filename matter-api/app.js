@@ -138,7 +138,7 @@ app.post("/api/events", (request,response) => {
     })
 })
 
-app.get("/api/events", async (request, response) => {
+app.get("/api/user-events", async (request, response) => {
     const {token} = request.cookies
     jwt.verify(token, jwtSecret, {}, async (error, userData) => {
         const {id} = userData
@@ -148,7 +148,6 @@ app.get("/api/events", async (request, response) => {
 
 app.get("/api/events/:id", async (request, response) => {
     const {id} = request.params
-    // console.log(id)
     response.json(await Event.findById(id))
 })
 
@@ -178,7 +177,10 @@ app.put("/api/events/", async (request, response) => {
             response.json("okay")
         }
 })
+})
 
+app.get("/api/events", async (request, response) => {
+    response.json(await Event.find())
 })
 
 // test@email.com

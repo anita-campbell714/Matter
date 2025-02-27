@@ -9,6 +9,7 @@ import { UserContextProvider } from "./UserContext"
 import ProfilePage from "./pages/ProfilePage"
 import EventsPage from "./pages/EventsPage"
 import EventsFormPage from "./pages/EventsFormPage"
+import EventPage from "./pages/EventPage"
 
 axios.defaults.baseURL = "http://localhost:4000/api"
 axios.defaults.withCredentials = true
@@ -34,6 +35,7 @@ export default function App() {
                         path="/account/events/:id"
                         element={<EventsFormPage />}
                     />
+                    <Route path="/event/:id" element={<EventPage />} />
                 </Route>
             </Routes>
         </UserContextProvider>

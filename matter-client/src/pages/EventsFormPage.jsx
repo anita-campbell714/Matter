@@ -8,12 +8,12 @@ import { Navigate, useParams } from "react-router"
 export default function EventsFormPage() {
     const { id } = useParams()
     const [title, setTitle] = useState("")
-    const [age, setAge] = useState("")
+    const [age, setAge] = useState(1)
     const [eventDate, setEventDate] = useState("")
     const [startTime, setStartTime] = useState("")
     const [endTime, setEndTime] = useState("")
     const [address, setAddress] = useState("")
-    const [price, setPrice] = useState("")
+    const [price, setPrice] = useState(0)
     const [description, setDescription] = useState("")
     const [addedImages, setAddedImages] = useState("")
     const [additionalInfo, setAdditionalInfo] = useState("")
@@ -140,7 +140,7 @@ export default function EventsFormPage() {
                     onChange={(event) => setPrice(event.target.value)}
                     placeholder="£0.00"
                 />
-                <h2 className="text-lg mt-4">Max Guests</h2>
+                <h2 className="text-lg mt-4">Capacity</h2>
                 <input
                     type="number"
                     value={capacity}

@@ -6,7 +6,7 @@ import axios from "axios"
 export default function EventsPage() {
     const [events, setEvents] = useState([])
     useEffect(() => {
-        axios.get("/events").then(({ data }) => {
+        axios.get("/user-events").then(({ data }) => {
             setEvents(data)
         })
     }, [])
@@ -56,7 +56,7 @@ export default function EventsPage() {
                                 </div>
                                 <div className="grow-0 shrink">
                                     <h2 className="text-xl">{event.title}</h2>
-                                    <p className="text-sm mt-2">
+                                    <p className="text-sm mt-2 line-clamp-5 ">
                                         {event.description}
                                     </p>
                                 </div>
