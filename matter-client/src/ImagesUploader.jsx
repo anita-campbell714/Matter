@@ -56,7 +56,7 @@ export default function ImagesUploader({ addedImages, onChange }) {
                 ></input>
                 <button
                     onClick={addImageByLink}
-                    className="bg-primary px-2 text-xs font-bold  rounded-2xl text-white"
+                    className="bg-primary hover:bg-tertiary px-2 text-xs font-bold  rounded-2xl text-white"
                 >
                     Add image
                 </button>

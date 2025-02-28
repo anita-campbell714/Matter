@@ -7,6 +7,8 @@ const jwt = require("jsonwebtoken")
 
 const User = require("./models/users.mod");
 const Event = require("./models/events-mod");
+const Booking = require("./models/booking");
+
 const cookieParser = require("cookie-parser");
 const imageDownloader = require("image-downloader");
 const multer = require("multer");
@@ -181,6 +183,18 @@ app.put("/api/events/", async (request, response) => {
 
 app.get("/api/events", async (request, response) => {
     response.json(await Event.find())
+})
+
+app.post("/api/bookings", (request, response) => {
+    const {eventId, totalPrice, quantity, name, number, email} = request.body
+    Booking.create({
+        eventId, totalPrice, quantity, name, number, email
+    }).then((doc) => {
+        console.log(doc.name)
+        response.json("doc")
+    }).catch((error) => {
+        throw error;
+    })
 })
 
 // test@email.com

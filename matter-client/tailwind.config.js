@@ -10,9 +10,11 @@ export default {
         primary: "#5A9C1C",
         secondary: "#8d5381",
         tertiary: "#25262d",
-        quad: "#C1D7AC",
+        quad: "#6EBF22",
         pent: "#8D5381",
-        hex: "#55832B"
+        hex: "#55832B",
+        red: "#EB2D29",
+        lighter: "#D5F3BA"
       }
     },
   },

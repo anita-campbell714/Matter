@@ -25,10 +25,12 @@ export default function EventPage() {
         return (
             <div className="absolute inset-0 bg-black text-white min-h-screen">
                 <span className="flex justify-center">
-                    <h2 className="text-2xl p-8 -mb-12 mt-10">IMAGES</h2>
+                    <h2 className="text-3xl font-bold p-8 -mb-15 mt-10">
+                        Gallery
+                    </h2>
                     <button
                         onClick={() => setShowAllImages(false)}
-                        className="flex fixed right-5 top-10 bg-tertiary text-white rounded-md shadow shadow-gray-500 border border-2 border-gray-300 gap-1 py-1 px-1 items-center mx-1 -my-7"
+                        className="flex fixed right-5 top-10 bg-tertiary text-white rounded-md shadow shadow-gray-500 border border-2 border-gray-300 gap-1 py-1 px-1 items-center mx-1 -my-7 hover:font-bold hover:text-tertiary hover:bg-white"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +74,7 @@ export default function EventPage() {
             </h1>
             <br />
             <div className="relative">
-                <div className="grid gap-2 grid-cols-[2fr_1fr] mb-4 bg-gray-300 rounded-md overflow-hidden p-2">
+                <div className="grid gap-1 grid-cols-[2fr_1fr] mb-4 bg-tertiary rounded-md overflow-hidden p-1">
                     <div>
                         {event.images?.[0] && (
                             <div>
@@ -114,7 +116,7 @@ export default function EventPage() {
                 </div>
                 <button
                     onClick={() => setShowAllImages(true)}
-                    className="flex items-center gap-2 absolute bottom-3 right-2 py-1 px-2 bg-tertiary text-white rounded-md shadown shadow-md shadow-gray-500 border border-2 border-gray-300"
+                    className="flex items-center gap-2 absolute bottom-3 right-2 py-1 px-2 bg-tertiary text-white rounded-md shadown shadow-md shadow-gray-500 border border-2 border-gray-300 hover:font-bold hover:text-tertiary hover:bg-white"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -138,13 +140,12 @@ export default function EventPage() {
                     More images
                 </button>
             </div>
-            <BookingWidget event={event} />
+            <div className="text-center text-xl text-white bg-tertiary rounded-2xl font-bold py-1 mx-14">
+                <h2 className="mb-2 mt-2">Price: £{event.price.toFixed(2)}</h2>
+                <h2 className="mb-2 mt-2">Minimum age: {event.age}</h2>
+            </div>
             <br />
-            <h2 className="text-center font-bold px-1 py-1 mb-1">
-                Minimum age: {event.age}
-            </h2>
-            <br />
-            <h2 className="font-bold text-center bg-opacity-70 -mx-5 px-5 py-2 mb-1 rounded-md bg-primary">
+            <h2 className="font-bold text-center text-lg text-black -mx-5 px-5 py-2 mb-1 rounded-md bg-primary">
                 Date | Time | Location
             </h2>
             <div className="flex gap-10 justify-center mt-4 mb-4">
@@ -186,10 +187,11 @@ export default function EventPage() {
                 </a>
             </div>
             <br />
-            <h2 className="font-bold text-center bg-opacity-70 -mx-5 px-5 py-2 mb-1 rounded-md bg-primary">
+            <h2 className="font-bold text-lg text-center text-black -mx-5 px-5 py-2 mb-5 rounded-md bg-primary">
                 About this event
             </h2>
             <h2 className="text-center">{event.description}</h2>
+            <BookingWidget event={event} />
         </div>
     )
 }

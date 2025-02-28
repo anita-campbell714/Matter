@@ -6,7 +6,7 @@ export default function Header() {
     const { user } = useContext(UserContext)
     return (
         <header className="flex items-center justify-between">
-            <Link to={"/home"} className="flex items-center gap-1">
+            <Link to={"/home"} className="flex items-center">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -23,16 +23,19 @@ export default function Header() {
                 </svg>
                 <span className="font-bold text-3xl">Matter</span>
             </Link>
-            <div className="flex gap-2 border border-gray-300 rounded-full px-2 py-2 shadow-md shadow-gray-500">
-                <div>Search Events</div>
-                <button className="bg-primary text-white rounded-full p-1">
+            <div className="flex items-center gap-2 bg-tertiary border border-gray-300 rounded-full px-1 py-1 shadow-md shadow-gray-500">
+                <input
+                    className="border rounded-full p-2"
+                    placeholder="Search events..."
+                />
+                <button className="bg-primary pr-5 text-white rounded-full p-1">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="w-4 h-4"
+                        className="w-5 h-5"
                     >
                         <path
                             strokeLinecap="round"
@@ -41,8 +44,6 @@ export default function Header() {
                         />
                     </svg>
                 </button>
-                <div className="border-l border-gray-300 pl-2">Location</div>
-                <div className="border-l border-gray-300 pl-2">My Events</div>
             </div>
             <div className="flex items-center gap-2 border border-gray-300 rounded-full px-2 py-2">
                 <svg
@@ -61,7 +62,7 @@ export default function Header() {
                 </svg>
                 <Link
                     to={user ? "/account" : "/login"}
-                    className="bg-primary p-2 text-white text-lg flex items-center gap-1 rounded-full"
+                    className="bg-primary p-2 text-white text-lg flex items-center gap-1 rounded-full hover:bg-tertiary"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

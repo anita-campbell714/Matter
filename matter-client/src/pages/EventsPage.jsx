@@ -15,7 +15,7 @@ export default function EventsPage() {
             <AccountNav />
             <div className="text-center">
                 <Link
-                    className="inline-flex gap-1 bg-primary text-white py-2 px-6 rounded-full"
+                    className="inline-flex gap-1 bg-primary text-white py-2 px-6 rounded-full hover:bg-tertiary"
                     to="/account/events/new"
                 >
                     <svg
@@ -40,7 +40,7 @@ export default function EventsPage() {
                             <Link
                                 to={"/account/events/" + event._id}
                                 key={event._id}
-                                className="flex justify-between cursor-pointer gap-4 bg-gray-300 p-4 rounded-2xl mb-4"
+                                className="flex justify-between cursor-pointer gap-4 bg-gray-300 p-4 rounded-2xl mb-4 hover:bg-tertiary hover:text-white"
                             >
                                 <div className="flex justify-center rounded-2xl bg-gray-200 w-40 h-40 grow shrink-0">
                                     {event.images.length > 0 && (

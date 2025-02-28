@@ -38,7 +38,10 @@ export default function ProfilePage() {
             {subpage === "profile" && (
                 <div className="text-center max-w-lg mx-auto">
                     Logged in as {user.firstName} ({user.email}) <br />
-                    <button onClick={logout} className="primary max-w-sm mt-2">
+                    <button
+                        onClick={logout}
+                        className="primary max-w-sm mt-2 hover:bg-tertiary"
+                    >
                         Logout
                     </button>
                 </div>

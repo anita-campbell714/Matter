@@ -135,7 +135,7 @@ export default function EventsFormPage() {
                 />
                 <h2 className="text-lg mt-4">Price</h2>
                 <input
-                    type="text"
+                    type="number"
                     value={price}
                     onChange={(event) => setPrice(event.target.value)}
                     placeholder="£0.00"
@@ -174,7 +174,9 @@ export default function EventsFormPage() {
                     If necessary, please specifiy in the description whether
                     selected amenities are free, or available at a cost.
                 </p>
-                <button className="primary my-4">Save event</button>
+                <button className="primary my-4 hover:bg-tertiary">
+                    Save event
+                </button>
             </form>
         </div>
     )

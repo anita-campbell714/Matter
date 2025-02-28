@@ -9,7 +9,8 @@ export default function AccountNav() {
     }
 
     function linkClasses(type = null) {
-        let classes = "inline-flex gap-1 px-6 rounded-full"
+        let classes =
+            "inline-flex gap-1 px-6 rounded-full hover:bg-tertiary hover:text-white"
         if (type === subpage) {
             classes += " bg-primary text-white"
         } else {
@@ -19,7 +20,7 @@ export default function AccountNav() {
     }
 
     return (
-        <nav className="w-full flex justify-center mt-8 gap-2 mb-8">
+        <nav className="w-full flex justify-center text-nowrap text-center mt-8 gap-2 mb-8">
             <Link className={linkClasses("profile")} to={"/account"}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -37,10 +38,7 @@ export default function AccountNav() {
                 </svg>
                 My Profile
             </Link>
-            <Link
-                className={linkClasses("my-bookings")}
-                to={"/account/my-bookings"}
-            >
+            <Link className={linkClasses("bookings")} to={"/account/bookings"}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
