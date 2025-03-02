@@ -1,25 +1,33 @@
 import axios from "axios"
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Navigate } from "react-router"
+import { UserContext } from "./UserContext"
 
 export default function BookingWidget({ event }) {
     const [quantity, setQuantity] = useState(0)
-    const [name, setName] = useState("yolo")
-    const [email, setEmail] = useState("ymoyo@gmail.com")
-    const [number, setNumber] = useState(0)
+    const [name, setName] = useState("")
+    const [phone, setPhone] = useState(0)
+    const [email, setEmail] = useState("")
     const [redirectUser, setRedirectUser] = useState("")
+    const { user } = useContext(UserContext)
 
     const ticketPrice = event.price.toFixed(2)
     const total = (quantity * ticketPrice).toFixed(2)
 
+    useEffect(() => {
+        if (user) {
+            setEmail(user.email)
+        }
+    }, [user])
+
     async function bookThisEvent() {
         const response = await axios.post("/bookings", {
-            eventId: event._id,
-            totalPrice: total,
-            quantity,
             name,
-            number,
+            phone,
             email,
+            place: event._id,
+            tickets: quantity,
+            price: total,
         })
         const bookingId = response.data._id
         setRedirectUser(`/account/bookings/${bookingId}`)
@@ -82,7 +90,7 @@ export default function BookingWidget({ event }) {
                                     <input
                                         className="text-tertiary text-center"
                                         type="text"
-                                        placeholder="Yoliswa Moyo"
+                                        placeholder="Your Name"
                                         value={name}
                                         onChange={(event) =>
                                             setName(event.target.value)
@@ -95,9 +103,9 @@ export default function BookingWidget({ event }) {
                                         className="text-tertiary text-center"
                                         type="tel"
                                         placeholder="070 000 0000"
-                                        value={number}
+                                        value={phone}
                                         onChange={(event) =>
-                                            setNumber(event.target.value)
+                                            setPhone(event.target.value)
                                         }
                                     />
                                 </div>

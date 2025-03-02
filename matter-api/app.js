@@ -4,10 +4,11 @@ const cors = require('cors');
 const { mongoose } = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken")
+// mongo.connect("")
 
-const User = require("./models/users.mod");
-const Event = require("./models/events-mod");
-const Booking = require("./models/booking");
+const User = require("./models/User");
+const Event = require("./models/Place");
+const Booking = require("./models/Booking");
 
 const cookieParser = require("cookie-parser");
 const imageDownloader = require("image-downloader");
@@ -27,6 +28,16 @@ app.use(cors({
 }));
 
 mongoose.connect(process.env.MONGO_URL)
+
+function getUserDataFromRequest(request){
+    return new Promise((resolve, reject) => {
+        jwt.verify(request.cookies.token, jwtSecret, {}, async (error, userData)=> {
+            if(error) throw error
+            resolve(userData)
+        })
+    })
+
+}
 
 app.get("/api/test", (request, response) => {
     response.json("test okay")
@@ -185,16 +196,36 @@ app.get("/api/events", async (request, response) => {
     response.json(await Event.find())
 })
 
-app.post("/api/bookings", (request, response) => {
-    const {eventId, totalPrice, quantity, name, number, email} = request.body
+app.post("/api/bookings", async (request, response) => {
+    const userData = await getUserDataFromRequest(request)
+    const {place, name, phone, email, price, tickets} = request.body
+
     Booking.create({
-        eventId, totalPrice, quantity, name, number, email
+        place, name, phone, email, price, tickets, user:userData.id
     }).then((doc) => {
-        console.log(doc.name)
-        response.json("doc")
+        response.json(doc)
     }).catch((error) => {
         throw error;
     })
+})
+
+app.get("/api/bookings", async (request, response) => {
+    const userData = await getUserDataFromRequest(request)
+    response.json(await Booking.find({user:userData.id}))
+})
+
+app.get("/api/ticket-holders", async (request, response) => {
+
+    response.json("okay")
+
+    
+    // const userData = await getUserDataFromRequest(request)
+    // response.json(await Booking.find({user:userData.id}))
+
+        // const collections = mongoose.connection.collections
+    // console.log("data")
+    // response.json(collections)
+    
 })
 
 // test@email.com
@@ -204,9 +235,6 @@ app.post("/api/bookings", (request, response) => {
 // yolo
 
 // staff@matter.com
-// staff
-
-// management@matter.com
 // staff
 
 console.log("app.js is up and running!")

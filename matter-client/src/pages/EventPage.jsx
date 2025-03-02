@@ -21,6 +21,8 @@ export default function EventPage() {
         return ""
     }
 
+    // console.log(event)
+
     if (showAllImages) {
         return (
             <div className="absolute inset-0 bg-black text-white min-h-screen">
@@ -38,7 +40,7 @@ export default function EventPage() {
                             viewBox="0 0 24 24"
                             strokeWidth="1.5"
                             stroke="currentColor"
-                            class="size-6"
+                            className="size-6"
                         >
                             <path
                                 strokeLinecap="round"
@@ -56,6 +58,7 @@ export default function EventPage() {
                         event.images.map((image) => (
                             <img
                                 className="rounded-md"
+                                key={event._id}
                                 src={
                                     "http://localhost:4000/api/uploads/" + image
                                 }

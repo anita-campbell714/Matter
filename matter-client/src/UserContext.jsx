@@ -6,14 +6,13 @@ export const UserContext = createContext({})
 export function UserContextProvider({ children }) {
     const [user, setUser] = useState(null)
     const [ready, setReady] = useState(false)
+
     useEffect(() => {
         if (!user) {
-            const { data } = axios
-                .get("/profile") // /profile is called twice as shown in browser under Network. This could be because we have strictmode in React. It will also be called twice in development?
-                .then(({ data }) => {
-                    setUser(data)
-                    setReady(true)
-                })
+            const { data } = axios.get("/profile").then(({ data }) => {
+                setUser(data)
+                setReady(true)
+            })
         }
     }, [])
     return (
