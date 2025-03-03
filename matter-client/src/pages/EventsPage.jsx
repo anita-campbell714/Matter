@@ -48,26 +48,6 @@ export default function EventsPage() {
                         </svg>
                         Create a new event
                     </Link>
-                    <Link
-                        to={"/account/events/ticket-holders"}
-                        className="inline-flex gap-1 bg-white border border-primary border-2 text-tertiary hover:text-white py-2 items-center px-4 font-bold text-lg rounded-full hover:bg-tertiary mb-10"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth="1.5"
-                            stroke="currentColor"
-                            className="size-6"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
-                            />
-                        </svg>
-                        Browse ticket holders
-                    </Link>
                 </div>
                 <div>
                     <h2 className="text-3xl mt-10 mb-5 p-3 border-t border-gray-300">

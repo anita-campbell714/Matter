@@ -12,7 +12,6 @@ import EventsFormPage from "./pages/EventsFormPage"
 import EventPage from "./pages/EventPage"
 import BookingsPage from "./pages/BookingsPage"
 import BookingPage from "./pages/BookingPage"
-import TicketHoldersPage from "./pages/TicketHoldersPage"
 
 axios.defaults.baseURL = "http://localhost:4000/api"
 axios.defaults.withCredentials = true
@@ -46,10 +45,6 @@ export default function App() {
                     <Route
                         path="/account/bookings/:id"
                         element={<BookingPage />}
-                    />
-                    <Route
-                        path="/account/events/ticket-holders"
-                        element={<TicketHoldersPage />}
                     />
                 </Route>
             </Routes>
