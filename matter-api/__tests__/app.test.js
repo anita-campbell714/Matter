@@ -1,26 +1,5 @@
-// const data = require("../db/seed/data/test");
-// const {seedMongoDB} = require("../db/seed/seed");
-// const config = require("../config");
-// const {
-//     connectToMongo,
-//     disconnectFromMongo,
-//   } = require("../db/mongodb-connection");
 const app = require('../app');
 const request = require("supertest");
-// // const endpoints = require("../controllers/endpoints");
-// require("jest-extended");
-
-// beforeEach(async () => {
-//     testData = await seedMongoDB(data);
-//   });
-  
-//   beforeAll(async () => {
-//     await connectToMongo(config.mongo.uri);
-//   });
-  
-//   afterAll(async () => {
-//     await disconnectFromMongo();
-//   });
 
 describe("invalid endpoint", () => {
     test("returns status 404: and error message when given an endpoint that doesn't exist", () => {
@@ -86,8 +65,8 @@ describe("POST /api/create-an-account", () => {
 describe("POST /api/login", () => {
     test("returns status 200: logs user into their account", () => {
         const userLogin = {
-            email: "yoliswa.moyo@example.com",
-            password: "hashedpassword456"
+            email: "ymoyo@email.com",
+            password: "yolo"
         }
         return request(app)
         .post("/api/login")
@@ -95,38 +74,9 @@ describe("POST /api/login", () => {
         .expect(200)
         .then((response) => {
             console.log(response.body)
-            expect(response.body).toBe("hashedpassword456")
+            expect(response.body).toBe("yolo")
         })
     })
-
-    // test("returns status 422: and error message when the inputted password is incorrect", () => {
-    //     const userPwdRight = {
-    //         firstName: "test",
-    //         lastName: "test",
-    //         email: "davidhammerman@hotmail.com",
-    //         password: "test",
-    //         location: "test"
-    //     }
-
-    //     const userPwdWrong = {
-    //         firstName: "test",
-    //         lastName: "test",
-    //         email: "davidhammerman@hotmail.com",
-    //         password: "test1",
-    //         location: "test"
-    //     }
-
-    //     return request(app)
-    //     .post("/api/create-an-account")
-    //     .send(userPwdWrong)
-    //     .expect(422)
-    //     .then((response) => {
-    //         const mongoErrorCode = response.body.errorResponse.code
-    //         expect(mongoErrorCode).toBe(11000)
-    //     })
-    // })
-
-    
     // test("", () => {
 
     // })
@@ -141,5 +91,3 @@ describe("POST /api/login", () => {
 
 //     })
 // })
-
-// test to check that user login password is correct (requires a new account to have already been created. User password will be stored upon account creation. When user comes to login, the stored password will then be compared to current login page password).

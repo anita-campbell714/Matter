@@ -2,14 +2,24 @@ import { Link } from "react-router"
 import AccountNav from "../AccountNav"
 import { useEffect, useState } from "react"
 import axios from "axios"
+import Loading from "../Loading"
 
 export default function EventsPage() {
     const [events, setEvents] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
+
     useEffect(() => {
+        setIsLoading(true)
         axios.get("/user-events").then(({ data }) => {
             setEvents(data)
+            setIsLoading(false)
         })
     }, [])
+
+    if (isLoading) {
+        return <Loading />
+    }
+
     return (
         <div>
             <AccountNav />

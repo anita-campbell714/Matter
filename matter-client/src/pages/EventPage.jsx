@@ -2,26 +2,38 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import BookingWidget from "../BookingWidget"
+import Loading from "../Loading"
 
 export default function EventPage() {
     const { id } = useParams()
     const [event, setEvent] = useState(null)
     const [showAllImages, setShowAllImages] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         if (!id) {
             return
         }
         axios.get(`/events/${id}`).then((response) => {
+            setIsLoading(true)
             setEvent(response.data)
+            setIsLoading(false)
         })
     }, [id])
+
+    if (isLoading) {
+        return <Loading />
+    }
 
     if (!event) {
         return ""
     }
 
-    // console.log(event)
+    function additionalInfoAvailable() {
+        if (event.additionalInfo) {
+            return true
+        }
+    }
 
     if (showAllImages) {
         return (
@@ -58,7 +70,7 @@ export default function EventPage() {
                         event.images.map((image) => (
                             <img
                                 className="rounded-md"
-                                key={event._id}
+                                key={event.images.indexOf(image)}
                                 src={
                                     "http://localhost:4000/api/uploads/" + image
                                 }
@@ -194,6 +206,40 @@ export default function EventPage() {
                 About this event
             </h2>
             <h2 className="text-center">{event.description}</h2>
+            <br />
+            <h2 className="font-bold text-lg text-center text-black -mx-5 px-5 py-2 mb-5 rounded-md bg-primary">
+                Additional Information
+            </h2>
+            <h2 className="text-center">
+                {additionalInfoAvailable() &&
+                    event.additionalInfo.map((info) => {
+                        return (
+                            <div
+                                key={event.additionalInfo.indexOf(info)}
+                                className="flex justify-center gap-1 mb-3"
+                            >
+                                <div>{info}</div>
+
+                                <div className="">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth="1.5"
+                                        stroke="currentColor"
+                                        className="size-5"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z"
+                                        />
+                                    </svg>
+                                </div>
+                            </div>
+                        )
+                    })}
+            </h2>
             <BookingWidget event={event} />
         </div>
     )

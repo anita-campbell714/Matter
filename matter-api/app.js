@@ -4,7 +4,6 @@ const cors = require('cors');
 const { mongoose } = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken")
-// mongo.connect("")
 
 const User = require("./models/User");
 const Event = require("./models/Place");
@@ -38,10 +37,6 @@ function getUserDataFromRequest(request){
     })
 
 }
-
-app.get("/api/test", (request, response) => {
-    response.json("test okay")
-})
 
 app.post("/api/create-an-account", async (request, response) => {
 
@@ -146,7 +141,6 @@ app.post("/api/events", (request,response) => {
             images: addedImages,
             additionalInfo,
         })
-        console.log(userData)
         response.json(eventDoc)
     })
 })
@@ -198,11 +192,12 @@ app.get("/api/events", async (request, response) => {
 
 app.post("/api/bookings", async (request, response) => {
     const userData = await getUserDataFromRequest(request)
-    const {place, name, phone, email, price, tickets} = request.body
+    const {place, name, phone, email, price, tickets, title, eventDate, startTime, endTime, address} = request.body
 
     Booking.create({
-        place, name, phone, email, price, tickets, user:userData.id
+        place, name, phone, email, price, tickets, title, eventDate, startTime, endTime, address, user:userData.id
     }).then((doc) => {
+        console.log(doc)
         response.json(doc)
     }).catch((error) => {
         throw error;
@@ -212,20 +207,6 @@ app.post("/api/bookings", async (request, response) => {
 app.get("/api/bookings", async (request, response) => {
     const userData = await getUserDataFromRequest(request)
     response.json(await Booking.find({user:userData.id}))
-})
-
-app.get("/api/ticket-holders", async (request, response) => {
-
-    response.json("okay")
-
-    
-    // const userData = await getUserDataFromRequest(request)
-    // response.json(await Booking.find({user:userData.id}))
-
-        // const collections = mongoose.connection.collections
-    // console.log("data")
-    // response.json(collections)
-    
 })
 
 // test@email.com

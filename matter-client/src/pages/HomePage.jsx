@@ -1,14 +1,24 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router"
+import { UserContext } from "../UserContext"
+import Loading from "../Loading"
 
 export default function HomePage() {
     const [events, setEvents] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+
     useEffect(() => {
+        setIsLoading(true)
         axios.get("/events").then((response) => {
             setEvents(response.data)
+            setIsLoading(false)
         })
     }, [])
+
+    if (isLoading) {
+        return <Loading />
+    }
 
     return (
         <div>

@@ -103,7 +103,7 @@ export default function EventsFormPage() {
                             onChange={(event) =>
                                 setEventDate(event.target.value)
                             }
-                            placeholder="14/01/2025"
+                            placeholder="14th March 2025"
                         />
                     </div>
                     <div>
@@ -114,7 +114,7 @@ export default function EventsFormPage() {
                             onChange={(event) =>
                                 setStartTime(event.target.value)
                             }
-                            placeholder="19:00"
+                            placeholder="7pm"
                         />
                     </div>
                     <div>
@@ -123,7 +123,7 @@ export default function EventsFormPage() {
                             type="text"
                             value={endTime}
                             onChange={(event) => setEndTime(event.target.value)}
-                            placeholder="23:00"
+                            placeholder="11pm"
                         />
                     </div>
                 </div>

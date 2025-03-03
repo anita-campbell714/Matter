@@ -8,6 +8,11 @@ const bookingSchema = new mongoose.Schema ({
     "email": {type: String, required: true},
     "tickets": Number,
     "price": Number,
+    "title": String,
+    "eventDate": String,
+    "startTime": String,
+    "endTime": String,
+    "address": String
 })
 
 const BookingModel = mongoose.model("Booking", bookingSchema)

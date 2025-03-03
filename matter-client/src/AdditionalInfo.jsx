@@ -16,8 +16,8 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
-                        checked={selected.includes("parking")}
-                        name="parking"
+                        checked={selected.includes("Free Parking")}
+                        name="Free Parking"
                         onChange={handleCheckboxClick}
                     />
                     <svg
@@ -39,8 +39,8 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
-                        checked={selected.includes("entrance")}
-                        name="entrance"
+                        checked={selected.includes("Accessible Entrance")}
+                        name="Accessible Entrance"
                         onChange={handleCheckboxClick}
                     />
                     <svg
@@ -63,8 +63,8 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
-                        checked={selected.includes("acessibleSeating")}
-                        name="acessibleSeating"
+                        checked={selected.includes("Seating")}
+                        name="Seating"
                         onChange={handleCheckboxClick}
                     />
                     <svg
@@ -86,8 +86,8 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
-                        checked={selected.includes("alcoholFree")}
-                        name="alcoholFree"
+                        checked={selected.includes("Alcohol-free Event")}
+                        name="Alcohol-free Event"
                         onChange={handleCheckboxClick}
                     />
                     <svg
@@ -110,8 +110,8 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
-                        checked={selected.includes("wifi")}
-                        name="wifi"
+                        checked={selected.includes("Wifi")}
+                        name="Wifi"
                         onChange={handleCheckboxClick}
                     />
                     <svg
@@ -133,8 +133,8 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
-                        checked={selected.includes("nightlife")}
-                        name="nightlife"
+                        checked={selected.includes("Nightlife")}
+                        name="Nightlife"
                         onChange={handleCheckboxClick}
                     />
                     <svg
@@ -156,8 +156,8 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
-                        checked={selected.includes("music")}
-                        name="music"
+                        checked={selected.includes("Music")}
+                        name="Music"
                         onChange={handleCheckboxClick}
                     />
                     <svg
@@ -180,8 +180,8 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
-                        checked={selected.includes("arts")}
-                        name="arts"
+                        checked={selected.includes("Arts")}
+                        name="Arts"
                         onChange={handleCheckboxClick}
                     />
                     <svg
@@ -204,8 +204,8 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
-                        checked={selected.includes("dating")}
-                        name="dating"
+                        checked={selected.includes("Dating")}
+                        name="Dating"
                         onChange={handleCheckboxClick}
                     />
                     <svg
@@ -228,8 +228,8 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
-                        checked={selected.includes("hobbies")}
-                        name="hobbies"
+                        checked={selected.includes("Hobbies")}
+                        name="Hobbies"
                         onChange={handleCheckboxClick}
                     />
                     <svg
@@ -252,8 +252,8 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
-                        checked={selected.includes("business")}
-                        name="business"
+                        checked={selected.includes("Business")}
+                        name="Business"
                         onChange={handleCheckboxClick}
                     />
                     <svg
@@ -276,8 +276,8 @@ export default function AdditionalInfo({ selected, onChange }) {
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input
                         type="checkbox"
-                        checked={selected.includes("food")}
-                        name="food"
+                        checked={selected.includes("Food")}
+                        name="Food"
                         onChange={handleCheckboxClick}
                     />
                     <svg

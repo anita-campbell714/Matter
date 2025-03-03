@@ -14,7 +14,8 @@ export default {
         pent: "#8D5381",
         hex: "#55832B",
         red: "#EB2D29",
-        lighter: "#D5F3BA"
+        lighter: "#D5F3BA",
+        darker: "#31570F"
       }
     },
   },

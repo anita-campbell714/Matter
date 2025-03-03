@@ -1,7 +1,12 @@
 import { Link, useLocation } from "react-router"
+import { UserContext } from "./UserContext"
+import { useContext } from "react"
 
 export default function AccountNav() {
     const { pathname } = useLocation()
+    const { user } = useContext(UserContext)
+
+    const isStaff = user._id === "67b578e3b89376786fad7461"
 
     let subpage = pathname.split("/")?.[2]
     if (subpage === undefined) {
@@ -11,6 +16,7 @@ export default function AccountNav() {
     function linkClasses(type = null) {
         let classes =
             "inline-flex gap-1 px-6 rounded-full hover:bg-tertiary hover:text-white"
+
         if (type === subpage) {
             classes += " bg-primary text-white"
         } else {
@@ -18,9 +24,38 @@ export default function AccountNav() {
         }
         return classes
     }
+    function disabledLinkClasses(type = null) {
+        let classes =
+            "inline-flex gap-1 px-6 rounded-full hover:bg-tertiary hover:text-white border-4 border-double border-gray-500 hover:border-white"
+        let buttonDisabled = "pointer-events-none opacity-50"
+
+        if (isStaff === false) {
+            return buttonDisabled
+        } else if (type === subpage) {
+            classes += " bg-primary text-white border-white"
+        } else {
+            classes += " bg-gray-200"
+        }
+        return classes
+    }
+
+    function disabledLinkClassesStaff(type = null) {
+        let classes =
+            "inline-flex gap-1 px-6 rounded-full hover:bg-tertiary hover:text-white"
+        let buttonDisabled = "pointer-events-none opacity-50"
+
+        if (isStaff === true) {
+            return buttonDisabled
+        } else if (type === subpage) {
+            classes += " bg-primary text-white border-white"
+        } else {
+            classes += " bg-gray-200"
+        }
+        return classes
+    }
 
     return (
-        <nav className="w-full flex justify-center text-nowrap text-center mt-8 gap-2 mb-8">
+        <nav className="w-full flex justify-center text-nowrap text-center mt-8 gap-2 mb-8 items-center">
             <Link className={linkClasses("profile")} to={"/account"}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +73,10 @@ export default function AccountNav() {
                 </svg>
                 My Profile
             </Link>
-            <Link className={linkClasses("bookings")} to={"/account/bookings"}>
+            <Link
+                className={disabledLinkClassesStaff("bookings")}
+                to={"/account/bookings"}
+            >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -55,21 +93,10 @@ export default function AccountNav() {
                 </svg>
                 My Booked Events
             </Link>
-            <Link className={linkClasses("events")} to={"/account/events"}>
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="size-6"
-                >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
-                    />
-                </svg>
+            <Link
+                className={disabledLinkClasses("events")}
+                to={"/account/events"}
+            >
                 Manage My Events
             </Link>
         </nav>

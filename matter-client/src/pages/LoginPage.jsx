@@ -17,7 +17,9 @@ export default function LoginPage() {
             alert("Login successful!")
             setRedirectUser(true)
         } catch (error) {
-            alert("Login failed")
+            alert(
+                "Login failed: username or password incorrect. Please check your login details and try again."
+            )
         }
     }
 
