@@ -2,7 +2,7 @@
 
 Welcome to MATTER - an events platform.
 
-This platform allows community members to view, sign up for, and add events to their own personal calendars. Staff members also hav additional functionality to create and manage events.
+This platform allows community members to view, sign up for, and add events to their own personal calendars. Staff members also have additional functionality to create and manage events.
 
 ## Instructions
 
@@ -21,23 +21,23 @@ Minimum version of Node.js, needed to run the project:
 
 2. Run `npm install` in the [VS Code](https://code.visualstudio.com/) terminal.
 
-3. Navigate to backend server folder (/matter/matter-api) and run `nodemon listen.js` to start the MongoDB database.
+3. In your [VS Code](https://code.visualstudio.com/) terminal, navigate to backend server folder (/matter/matter-api) and run `nodemon listen.js` to start the MongoDB database.
 
-4. Navigate to front end client folder /matter/matter-client and run `npm run dev` to view the website in your browser.
+4. In your [VS Code](https://code.visualstudio.com/) terminal, navigate to front end client folder (/matter/matter-client) and run `npm run dev` to view the website in your browser.
 
 ### Test out the site
 
-To test the features out - login as Staff or Test below and start creating and booking events!:
+To test the features out - login as Staff or Test below to start creating and booking events!
 
-Staff email: staff@matter.com
-Staff password: staff
+**Staff email:** staff@matter.com
+**Staff password:** staff
 
 **Note that any accounts other than Staff will have the Manage My Events button disabled:(account/events).**
 
-Test email: test@email.com
-Test password: test
+**Test email:** test@email.com
+**Test password:** test
 
-Alternatively, create a new user account!
+Alternatively, create a new user account to get started!
 
 ### Back-end
 
