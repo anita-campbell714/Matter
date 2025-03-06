@@ -4,7 +4,10 @@
     "description": "matter-api",
     "main": "listen.js",
     "scripts": {
-        "test": "jest"
+        "test": "jest",
+        "dev": "NODE_ENV=development nodemon listen.js",
+        "seed-dev": "NODE_ENV=development node db/seed/run-seed.js",
+        "start": "node listen.js"
     },
     "dependencies": {
         "@emailjs/browser": "^4.4.1",
@@ -14,6 +17,7 @@
         "cors": "^2.8.5",
         "dotenv": "^16.4.7",
         "express": "^4.21.2",
+        "jest-config": "^29.7.0",
         "jsonwebtoken": "^9.0.2",
         "mongoose": "^8.10.0",
         "multer": "^1.4.5-lts.1",

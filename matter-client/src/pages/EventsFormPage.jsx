@@ -156,8 +156,9 @@ export default function EventsFormPage() {
                 />
                 <h2 className="text-lg mt-2">Images</h2>
                 <p className="text-gray-500 text-sm">
-                    Copy and paste an image link into the box below, or upload
-                    an image from your device by clicking the "Upload" button.
+                    Copy and paste an image address into the box below, or
+                    upload an image from your device by clicking the "Upload"
+                    button. To choose a main image, click on the fire icon.
                 </p>
                 <ImagesUploader
                     addedImages={addedImages}

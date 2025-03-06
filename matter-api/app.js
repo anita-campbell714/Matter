@@ -4,6 +4,8 @@ const cors = require('cors');
 const { mongoose } = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken")
+const {customErrorHandler, serverErrorHandler} = require("./error-handlers")
+const mongoUri = require("./config").mongo.uri
 
 const User = require("./models/User");
 const Event = require("./models/Place");
@@ -14,7 +16,7 @@ const imageDownloader = require("image-downloader");
 const multer = require("multer");
 const fs = require("fs");
 
-require ("dotenv").config();
+require ("dotenv").config({path: "./.env"});
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = "odsnsfkdsbfosdjfsdk"
 
@@ -25,8 +27,6 @@ app.use(cors({
     credentials: true,
     origin: "http://localhost:5173"
 }));
-
-mongoose.connect(process.env.MONGO_URL)
 
 function getUserDataFromRequest(request){
     return new Promise((resolve, reject) => {
@@ -197,7 +197,6 @@ app.post("/api/bookings", async (request, response) => {
     Booking.create({
         place, name, phone, email, price, tickets, title, eventDate, startTime, endTime, address, user:userData.id
     }).then((doc) => {
-        console.log(doc)
         response.json(doc)
     }).catch((error) => {
         throw error;
@@ -218,13 +217,16 @@ app.get("/api/bookings", async (request, response) => {
 // staff@matter.com
 // staff
 
-console.log("app.js is up and running!")
+console.log("<<<<<<<<<<<<<<<<<<<app.js is up and running!")
 
 
 // To capture all bad URLs
 app.all('*', (request, response) => {
     response.status(404).send({message: 'path not found this time'})
 })
+
+app.use(customErrorHandler)
+app.use(serverErrorHandler)
 
 module.exports = app
 

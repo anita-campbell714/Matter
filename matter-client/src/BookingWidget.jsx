@@ -11,7 +11,6 @@ export default function BookingWidget({ event }) {
     const [phone, setPhone] = useState(0)
     const [email, setEmail] = useState("")
     const [place, setPlace] = useState(event._id)
-    const [totalCost, setTotalCost] = useState(total)
     const [dateOfEvent, setDateOfEvent] = useState(event.eventDate)
     const [title, setTitle] = useState(event.title)
 
@@ -96,7 +95,7 @@ export default function BookingWidget({ event }) {
                         {quantity > 0 && (
                             <form
                                 // ref={form}
-                                onSubmit={sendEmail}
+                                // onSubmit={sendEmail}
                                 className="text-white mt-10 mb-1"
                             >
                                 <div className="mb-14 border-b">
@@ -209,18 +208,16 @@ export default function BookingWidget({ event }) {
                                     </div>
                                 </div>
                                 <div className="opacity-60 mt-5">
-                                    <label>Order Total: (£)</label>
-                                    <div className="mb-5">
-                                        <input
-                                            name="order_total"
-                                            readOnly
-                                            className="text-tertiary text-center"
-                                            type="text"
-                                            value={totalCost}
-                                            onChange={(event) =>
-                                                setTotalCost(event.target.value)
-                                            }
-                                        />
+                                    <label className="font-bold text-3xl">
+                                        Order Total: (£)
+                                    </label>
+                                    <div
+                                        className="mb-5 text-center text-3xl font-bold"
+                                        name="order_total"
+                                        readOnly
+                                        type="text"
+                                    >
+                                        {total}
                                     </div>
                                 </div>
                             </form>
