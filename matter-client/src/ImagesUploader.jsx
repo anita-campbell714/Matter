@@ -68,7 +68,8 @@ export default function ImagesUploader({ addedImages, onChange }) {
                             <img
                                 className="rounded-2xl w-full object-cover"
                                 src={
-                                    "http://localhost:4000/api/uploads/" + link
+                                    "https://matter-backend.onrender.com/api/uploads/" +
+                                    link
                                 }
                                 alt="event image"
                             />

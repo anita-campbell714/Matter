@@ -76,7 +76,6 @@ app.post("/api/login", async (request, response) => {
         else {
             response.status(422).json("password incorrect")
         }
-        console.log(response.status.code)
     }
 })
 
@@ -221,9 +220,6 @@ console.log("<<<<<<<<<<<<<<<<<<<app.js is up and running!")
 
 // To capture all bad URLs
 app.all('*', (request, response) => {
-    // if(response){
-
-    // }
     response.status(404).send({message: 'path not found this time'})
 })
 

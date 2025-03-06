@@ -13,7 +13,7 @@ import EventPage from "./pages/EventPage"
 import BookingsPage from "./pages/BookingsPage"
 import BookingPage from "./pages/BookingPage"
 
-axios.defaults.baseURL = "http://localhost:4000/api"
+axios.defaults.baseURL = "https://matter-backend.onrender.com/api"
 axios.defaults.withCredentials = true
 
 export default function App() {

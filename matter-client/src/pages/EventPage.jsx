@@ -72,7 +72,8 @@ export default function EventPage() {
                                 className="rounded-md"
                                 key={event.images.indexOf(image)}
                                 src={
-                                    "http://localhost:4000/api/uploads/" + image
+                                    "https://matter-backend.onrender.com/api/uploads/" +
+                                    image
                                 }
                                 alt=""
                             />
@@ -97,7 +98,7 @@ export default function EventPage() {
                                     onClick={() => setShowAllImages(true)}
                                     className="cursor-pointer aspect-square rounded-md object-cover"
                                     src={
-                                        "http://localhost:4000/api/uploads/" +
+                                        "https://matter-backend.onrender.com/api/uploads/" +
                                         event.images[0]
                                     }
                                 />
@@ -110,7 +111,7 @@ export default function EventPage() {
                                 onClick={() => setShowAllImages(true)}
                                 className="cursor-pointer aspect-square rounded-md object-cover"
                                 src={
-                                    "http://localhost:4000/api/uploads/" +
+                                    "https://matter-backend.onrender.com/api/uploads/" +
                                     event.images[1]
                                 }
                             />
@@ -121,7 +122,7 @@ export default function EventPage() {
                                     onClick={() => setShowAllImages(true)}
                                     className="cursor-pointer aspect-square rounded-md object-cover relative top-2"
                                     src={
-                                        "http://localhost:4000/api/uploads/" +
+                                        "https://matter-backend.onrender.com/api/uploads/" +
                                         event.images[2]
                                     }
                                 />

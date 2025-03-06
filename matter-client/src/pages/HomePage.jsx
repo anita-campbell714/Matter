@@ -38,7 +38,7 @@ export default function HomePage() {
                                     <img
                                         className="rounded-2xl object-cover aspect-square"
                                         src={
-                                            "http://localhost:4000/api/uploads/" +
+                                            "https://matter-backend.onrender.com/api/uploads/" +
                                             event.images?.[0]
                                         }
                                         alt=""

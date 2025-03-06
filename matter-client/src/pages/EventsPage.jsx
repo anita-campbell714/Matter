@@ -67,7 +67,7 @@ export default function EventsPage() {
                                         <img
                                             className="object-cover"
                                             src={
-                                                "http://localhost:4000/api/uploads/" +
+                                                "https://matter-backend.onrender.com/api/uploads/" +
                                                 event.images[0]
                                             }
                                             alt=""
