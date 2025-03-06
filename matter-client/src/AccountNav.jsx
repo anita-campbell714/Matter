@@ -6,8 +6,10 @@ export default function AccountNav() {
     const { pathname } = useLocation()
     const { user } = useContext(UserContext)
 
-    const isStaff =
-        user._id === "67b578e3b89376786fad7461" || "67ca2fdf223b3f46330c0284"
+    const isStaff = false
+    if (user._id === "67b578e3b89376786fad7461" || "67ca2fdf223b3f46330c0284") {
+        isStaff = true
+    }
 
     let subpage = pathname.split("/")?.[2]
     if (subpage === undefined) {
