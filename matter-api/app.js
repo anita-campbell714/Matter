@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken")
 const {customErrorHandler, serverErrorHandler} = require("./error-handlers")
 const mongoUri = require("./config").mongo.uri
+const config = require("./config")
 
 const User = require("./models/User");
 const Event = require("./models/Place");
@@ -18,7 +19,7 @@ const fs = require("fs");
 
 require ("dotenv").config({path: "./.env"});
 const bcryptSalt = bcrypt.genSaltSync(10);
-const jwtSecret = "odsnsfkdsbfosdjfsdk"
+const jwtSecret = config.jwt.secret
 
 app.use(express.json());
 app.use(cookieParser())
@@ -75,6 +76,7 @@ app.post("/api/login", async (request, response) => {
         else {
             response.status(422).json("password incorrect")
         }
+        console.log(response.status.code)
     }
 })
 
@@ -211,9 +213,6 @@ app.get("/api/bookings", async (request, response) => {
 // test@email.com
 // test
 
-// ymoyo@gmail.com
-// yolo
-
 // staff@matter.com
 // staff
 
@@ -222,6 +221,9 @@ console.log("<<<<<<<<<<<<<<<<<<<app.js is up and running!")
 
 // To capture all bad URLs
 app.all('*', (request, response) => {
+    // if(response){
+
+    // }
     response.status(404).send({message: 'path not found this time'})
 })
 

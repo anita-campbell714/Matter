@@ -1,9 +1,10 @@
-const data = require("../db/seed/data/test")
-const { seedMongoDB } = require("./db/seed/seed")
+const data = require("../db/seed/data/test/index.js")
+const { seedMongoDB } = require("../db/seed/seed.js")
 const config = require("../config")
 const { connectToMongo, disconnectFromMongo } = require("../db/mongodb-connection");
 const request = require("supertest");
 const app = require('../app');
+const bcrypt = require("bcryptjs")
 
 require("jest-extended")
 
@@ -14,17 +15,17 @@ beforeEach(async () => {
   });
 
 beforeAll(async () => {
-    // Connect to a Mongo DB test database
+    // Connect to MongoDB Atlas test cluster
     await connectToMongo(config.mongo.uri);
 })
 
 afterAll(async () => {
+    // Disconnect from MongoDB Atlas test cluster
     await disconnectFromMongo();
   });
 
-console.log(testData)
 
-describe("invalid endpoint", () => {
+describe("Invalid endpoint", () => {
     test("404 status and error message when given an endpoint that doesn't exist", () => {
         return request(app)
         .get("/api/not-a-route")
@@ -34,6 +35,8 @@ describe("invalid endpoint", () => {
         });
     });
 });
+
+//POST REQUESTS ---------------- //
 
 describe("POST /api/create-an-account", () => {
     test("returns status 200: creates a new user account", () => {
@@ -54,99 +57,39 @@ describe("POST /api/create-an-account", () => {
             expect(response.body.email).toHaveLength(20)
         });
     });
+
+    test("returns status 422: and error message when the inputted email address already exists in the database: duplicate key, an account has already been created with this email address", () => {
+        const newUser = {
+            firstName: "test",
+            lastName: "test",
+            email: "we4h01oi48@gmail.com",
+            password: "test",
+            location: "test"
+        }
+        return request(app)
+        .post("/api/create-an-account")
+        .send(newUser)
+        .expect(422)
+        .then((response) => {
+            const mongoErrorCode = response.body.errorResponse.code
+            expect(mongoErrorCode).toBe(11000)
+        })
+})
 })
 
+describe("POST /api/login", () => {
+    test("returns status 200: logs user into their account", () => {
+        const testAccount = {
+            email: "we4h01oi48@gmail.com",
+            password: "test"
+        }
 
-// describe("", () => {
-//     test("", () => {
-
-//     })
-//     test("", () => {
-
-//     })
-// })
-
-
-
-
-
-
-// describe("invalid endpoint", () => {
-//     test("returns status 404: and error message when given an endpoint that doesn't exist", () => {
-//         return request(app)
-//         .get("/api/not-a-route")
-//         .expect(404)
-//         .then((response) => {
-//             expect(response.body.message).toBe("path not found this time");
-//         });
-//     });
-// });
-
-// describe("POST /api/create-an-account", () => {
-//     test("returns status 200: creates a new user account", () => {
-//         const newUser = {
-//             firstName: "test",
-//             lastName: "test",
-//             email: "",
-//             password: "thisismypassword",
-//             location: "New York, USA"
-//         }
-//         newUser.email = Math.random().toString(36).slice(-10) + "@gmail.com";
-
-//         return request(app)
-//         .post("/api/create-an-account")
-//         .send(newUser)
-//         .expect(200)
-//         .then((response) => {
-//             expect(response.body.email).toHaveLength(20)
-//         });
-//     });
-
-//     test("returns status 422: and error message when the inputted email address already exists in the database: duplicate key, an account has already been created with this email address", () => {
-//         const newUser = {
-//             firstName: "test",
-//             lastName: "test",
-//             email: "davidhammerman@hotmail.com",
-//             password: "test",
-//             location: "test"
-//         }
-//         return request(app)
-//         .post("/api/create-an-account")
-//         .send(newUser)
-//         .expect(422)
-//         .then((response) => {
-//             const mongoErrorCode = response.body.errorResponse.code
-//             expect(mongoErrorCode).toBe(11000)
-//         })
-//     })
-// });
-
-// describe("POST /api/login", () => {
-//     test("returns status 200: logs user into their account", () => {
-//         const userLogin = {
-//             email: "ymoyo@email.com",
-//             password: "yolo"
-//         }
-//         return request(app)
-//         .post("/api/login")
-//         .send(userLogin)
-//         .expect(200)
-//         .then((response) => {
-//             console.log(response.body)
-//             expect(response.body).toBe("yolo")
-//         })
-//     })
-//     test("", () => {
-
-//     })
-// })
-
-
-// describe("", () => {
-//     test("", () => {
-
-//     })
-//     test("", () => {
-
-//     })
-// })
+        return request(app)
+        .post("/api/login")
+        .send(testAccount)
+        .expect(200)
+        .then((response) => {
+            expect(response.headers).toHaveProperty("set-cookie")
+        })
+    })
+})

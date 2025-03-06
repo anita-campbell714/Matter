@@ -9,6 +9,7 @@ if (ENV) {
 
 const mongoUser = process.env.MONGO_USER;
 const mongoPassword = process.env.MONGO_PASSWORD;
+const jwtSecret = process.env.JWT_SECRET
 
 let mongoUri = process.env.MONGO_HOST
 
@@ -22,5 +23,8 @@ module.exports = {
     },
     mongo: {
         uri: mongoUri,
+    },
+    jwt: {
+        secret: jwtSecret
     }
 }

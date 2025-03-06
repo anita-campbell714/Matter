@@ -21,7 +21,20 @@ export default function CreateAnAccountPage() {
             })
             alert("Your account has been created! Now you can log in.")
         } catch (error) {
-            alert("Account creation failed. Please try again.")
+            if (error.response.status === 422) {
+                response.send({
+                    message:
+                        "An account has already been created with this email address. Please login instead, or try again.",
+                })
+                return alert(
+                    "An account has already been created with this email address. Please login instead, or try again."
+                )
+            } else {
+                response.send({
+                    message: "Account creation failed. Please try again.",
+                })
+                alert("Account creation failed. Please try again.")
+            }
         }
     }
 
