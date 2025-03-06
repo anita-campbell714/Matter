@@ -15,8 +15,6 @@ const seedCollection = async (db, data, name) => {
     return await collection.find().toArray()
 }
 
-// console.log(uri)
-
 const seedMongoDB = async (users) => {
     try {
         await client.connect()
