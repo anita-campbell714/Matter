@@ -28,7 +28,7 @@ export default function BookingPage() {
                                 to={"/account/bookings"}
                                 className="underline"
                             >
-                                My Booked Events
+                                your bookings
                             </Link>{" "}
                             in your account panel
                         </div>

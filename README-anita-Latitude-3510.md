@@ -4,7 +4,7 @@ Welcome to MATTER - an events platform.
 
 This platform allows community members to view, sign up for, and add events to their own personal calendars. Staff members also have additional functionality to create and manage events.
 
-Frontend is hosted here:[Matter-Frontend] (https://matter-frontend.onrender.com)
+Frontend is hosted here:[Matter-Frontend](https://matter-frontend.onrender.com)
 Backend is hosted here: [Matter-Backend](https://matter-backend.onrender.com/api)
 
 ## Instructions

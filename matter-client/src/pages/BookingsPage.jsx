@@ -100,15 +100,15 @@ export default function BookingsPage() {
                                         <div className="mb-3 mt-3">
                                             <Link
                                                 to={`/event/${booking.place}`}
-                                                className="font-bold border bg-white text-tertiary p-2 text-lg hover:bg-tertiary hover:text-white cursor-pointer"
+                                                className="font-bold border-2 bg-primary text-white p-2 text-lg hover:bg-tertiary hover:text-white cursor-pointer"
                                                 key={
                                                     booking._id + booking.place
                                                 }
                                             >
-                                                Event Details
+                                                View Full Event Details
                                             </Link>
                                         </div>
-                                        <div className="font-bold text-2xl items-center text-tertiary hover:text-white underline rounded-2xl my-3 py-1 mt-1 mb-3 mx-3 cursor-pointer">
+                                        <div className="font-bold text-2xl items-center text-tertiary hover:text-white underline rounded-full my-3 py-1 mt-1 mb-3 mx-3 cursor-pointer">
                                             <AddToCalendarButton
                                                 name={booking.title}
                                                 startDate="2000-01-01"
@@ -121,7 +121,7 @@ export default function BookingsPage() {
                                             ></AddToCalendarButton>
                                         </div>
                                     </div>
-                                    <div className="border mx-20 mb-5">
+                                    <div className="border mx-2 mb-5">
                                         <div
                                             key={booking._id + "tickets"}
                                             className="mb-4 text-2xl font-bold bg-white text-tertiary"
