@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken")
 const {customErrorHandler, serverErrorHandler} = require("./error-handlers")
 const mongoUri = require("./config").mongo.uri
 const config = require("./config")
+const endpoints = require("./endpoints.json")
 
 const User = require("./models/User");
 const Event = require("./models/Place");
@@ -26,7 +27,7 @@ app.use(cookieParser())
 app.use("/api/uploads", express.static(__dirname+"/uploads"));
 app.use(cors({
     credentials: true,
-    origin: "http://localhost:5173"
+    origin: "https://matter-frontend.onrender.com"
 }));
 
 function getUserDataFromRequest(request){
@@ -38,6 +39,10 @@ function getUserDataFromRequest(request){
     })
 
 }
+
+app.get("/api", async(request, response) => {
+    await response.json(endpoints)
+})
 
 app.post("/api/create-an-account", async (request, response) => {
 
