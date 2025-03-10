@@ -25,10 +25,7 @@ const jwtSecret = config.jwt.secret
 app.use(express.json());
 app.use(cookieParser())
 app.use("/api/uploads", express.static(__dirname+"/uploads"));
-app.use(cors({
-    credentials: true,
-    origin: "https://matter-frontend.onrender.com"
-}));
+app.use(cors());
 
 function getUserDataFromRequest(request){
     return new Promise((resolve, reject) => {
