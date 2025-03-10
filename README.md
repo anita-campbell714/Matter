@@ -4,6 +4,9 @@ Welcome to MATTER - an events platform.
 
 This platform allows community members to view, sign up for, and add events to their own personal calendars. Staff members also have additional functionality to create and manage events.
 
+Frontend is hosted here:[Matter-Frontend](https://matter-frontend.onrender.com)
+Backend is hosted here: [Matter-Backend](https://matter-backend.onrender.com/api)
+
 ## Instructions
 
 Minimum version of Node.js, needed to run the project:
@@ -23,9 +26,22 @@ Minimum version of Node.js, needed to run the project:
 
 3. In your [VS Code](https://code.visualstudio.com/) terminal, navigate to the front end client folder (/matter/matter-client) and run `npm run dev` to view the website in your browser.
 
+#### Create environment variables
+
+4. Create 4 files to store environment variables, and if you have been given access, populate each file with the information you have been given:
+    - .env
+    - .env.test
+    - .env.development
+    - .env.production
+
 ### Test out the site
 
-To test the features - login as **Staff** or **Test** below to start creating and booking events!
+1. To start the backened server, open a terminal in [VS Code](https://code.visualstudio.com/) and `cd` into the backend folder (matter-api).
+2. Run the command `npm run dev` to connect to the mongoDB atlas server.
+3. To start the frontend server, open a separate terminal in [VS Code](https://code.visualstudio.com/) and `cd` into the frontend folder (matter-client).
+4. Run the command `npm run dev` to connect to the vite client. Open the link to localhost to access the site.
+
+To test the features - login as **Staff** or **Test** with the log in details below to start creating and booking events!
 
 **Staff email:** staff@matter.com
 **Staff password:** staff
