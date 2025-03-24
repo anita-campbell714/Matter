@@ -4,7 +4,6 @@ const {
     disconnectFromMongo,
   } = require("./db/mongodb-connection.js");
 const app = require("./app.js");
-// const { PORT = 4000 } = process.env;
 
 connectToMongo(config.mongo.uri)
 

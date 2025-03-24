@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const cors = require('cors');
+// const cors = require('cors');
 const { mongoose } = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken")
@@ -25,10 +25,14 @@ const jwtSecret = config.jwt.secret
 app.use(express.json());
 app.use(cookieParser())
 app.use("/api/uploads", express.static(__dirname+"/uploads"));
-app.use(cors({
-    credentials: true,
-    origin: "https://matter-frontend.onrender.com"
-}));
+// app.use(cors({
+//     origin: "https://matter-frontend.onrender.com"
+// }));
+
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    next();
+});
 
 function getUserDataFromRequest(request){
     return new Promise((resolve, reject) => {
@@ -37,7 +41,6 @@ function getUserDataFromRequest(request){
             resolve(userData)
         })
     })
-
 }
 
 app.get("/api", async(request, response) => {

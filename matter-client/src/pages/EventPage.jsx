@@ -10,6 +10,18 @@ export default function EventPage() {
     const [showAllImages, setShowAllImages] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
 
+    function eighteenPlus() {
+        let classes = "mb-2 bg-red mx-14"
+        let age = event.age
+
+        if (age === 0) {
+            event.age = "All ages welcome!"
+            return classes
+        } else if (age >= 18) {
+            return classes
+        }
+    }
+
     useEffect(() => {
         if (!id) {
             return
@@ -157,8 +169,11 @@ export default function EventPage() {
                 </button>
             </div>
             <div className="text-center text-xl text-white bg-tertiary rounded-2xl font-bold py-1 mx-14">
-                <h2 className="mb-2 mt-2">Price: £{event.price.toFixed(2)}</h2>
-                <h2 className="mb-2 mt-2">Minimum age: {event.age}</h2>
+                <h2 className="mb-2 mt-2 border-b mx-7 my-7 p-2">
+                    Price: £{event.price.toFixed(2)}
+                </h2>
+                <h2 className="mt-2">Minimum age:</h2>
+                <h2 className={eighteenPlus()}>{event.age}</h2>
             </div>
             <br />
             <h2 className="font-bold text-center text-lg text-black -mx-5 px-5 py-2 mb-1 rounded-md bg-primary">
