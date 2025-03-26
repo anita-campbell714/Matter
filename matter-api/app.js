@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-// const cors = require('cors');
+const cors = require('cors');
 const { mongoose } = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken")
@@ -25,14 +25,16 @@ const jwtSecret = config.jwt.secret
 app.use(express.json());
 app.use(cookieParser())
 app.use("/api/uploads", express.static(__dirname+"/uploads"));
-// app.use(cors({
-//     origin: "https://matter-frontend.onrender.com"
-// }));
 
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    next();
-});
+app.use(cors({
+    credentials: true,
+    origin: "https://matter-frontend.onrender.com"
+}));
+
+// app.use((req, res, next) => {
+//     res.setHeader("Access-Control-Allow-Origin", "*");
+//     next();
+// });
 
 function getUserDataFromRequest(request){
     return new Promise((resolve, reject) => {
@@ -50,6 +52,7 @@ app.get("/api", async(request, response) => {
 app.post("/api/create-an-account", async (request, response) => {
 
     const {firstName, lastName, email, password, location} = request.body;
+    const userDocEmail = await User.findOne({email: email})
 
     try {
         const userDoc = await User.create({
@@ -59,6 +62,9 @@ app.post("/api/create-an-account", async (request, response) => {
             password: bcrypt.hashSync(password, bcryptSalt),
             location
         })
+        if(userDocEmail){
+            response.status(422).json("An account has already been created with this email address. Please log in instead, or try again.")
+        }
         response.json(userDoc)
     }
     catch (error){
@@ -223,7 +229,7 @@ app.get("/api/bookings", async (request, response) => {
 // staff@matter.com
 // staff
 
-console.log("<<<<<<<<<<<<<<<<<<<app.js is up and running!")
+console.log("<<<<<<<<<< app.js is up and running!")
 
 
 // To capture all bad URLs

@@ -26,7 +26,7 @@ export default function CreateAnAccountPage() {
                     message:
                         "An account has already been created with this email address. Please login instead, or try again.",
                 })
-                return alert(
+                alert(
                     "An account has already been created with this email address. Please login instead, or try again."
                 )
             } else {

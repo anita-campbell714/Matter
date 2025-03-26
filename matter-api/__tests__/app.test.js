@@ -24,6 +24,7 @@ afterAll(async () => {
     await disconnectFromMongo();
   });
 
+//   console.log(testData)
 
 describe("Invalid endpoint", () => {
     test("404 status and error message when given an endpoint that doesn't exist", () => {
@@ -71,7 +72,9 @@ describe("POST /api/create-an-account", () => {
         .send(newUser)
         .expect(422)
         .then((response) => {
+            const dupliacteEmailAddress = response.body.errorResponse.keyValue.email
             const mongoErrorCode = response.body.errorResponse.code
+            expect(dupliacteEmailAddress).toBe(newUser.email)
             expect(mongoErrorCode).toBe(11000)
         })
 })
@@ -79,17 +82,16 @@ describe("POST /api/create-an-account", () => {
 
 describe("POST /api/login", () => {
     test("returns status 200: logs user into their account", () => {
-        const testAccount = {
+        const existingUser = {
             email: "we4h01oi48@gmail.com",
-            password: "test"
+            password: "test",
         }
-
         return request(app)
         .post("/api/login")
-        .send(testAccount)
+        .send(existingUser)
         .expect(200)
         .then((response) => {
-            expect(response.headers).toHaveProperty("set-cookie")
+            expect(response.body.email).toBe(existingUser.email)
         })
     })
 })
